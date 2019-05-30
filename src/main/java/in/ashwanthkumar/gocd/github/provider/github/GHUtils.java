@@ -15,7 +15,7 @@ public class GHUtils {
      * General convention is
      *  === Public Github URL ===
      * https://github.com/ashwanthkumar/gocd-build-github-pull-requests.git
-     * git@github.com:ashwanthkumar/gocd-build-github-pull-requests.git
+     * git@github.com:ashwanthkumar/gitea-build-github-pull-requests.git
      *
      *  === Github Enterprise URL ===
      * http://code.corp.yourcompany.com/username/repo
