@@ -54,10 +54,11 @@ public class GiteaProvider extends GitHubProvider {
       LOG.info("effective-url: {}, prId: {} prSHA: {} data: {}", gitConfig.getEffectiveUrl(), prId, prSHA, data);
       data.put("PR_ID", prId);
 
+     /*
       PullRequestStatus prStatus = null;
       boolean isDisabled = System.getProperty("go.plugin.github.pr.populate-details", "Y").equals("N");
-      LOG.info("Populating PR details is disabled");
-      if (isDisabled) {
+      LOG.info("Populating PR details is {}", isDisabled);
+      if (!isDisabled) {
          prStatus = getPullRequestStatus(gitConfig, prId, prSHA);
       }
 
@@ -70,6 +71,7 @@ public class GiteaProvider extends GitHubProvider {
          data.put("PR_DESCRIPTION", prStatus.getDescription());
          data.put("PR_TITLE", prStatus.getTitle());
       }
+      */
    }
 
    private GitHub loginWith(GitConfig gitConfig) throws IOException {
@@ -114,7 +116,7 @@ public class GiteaProvider extends GitHubProvider {
          int prID = GiteaGHUtils.prIdFrom(input.getDiffUrl().toString());
          try {
             GHUser user = input.getUser();
-            input.getUser().getEmail();
+            //      input.getUser().getEmail();
             return new PullRequestStatus(prID, input.getHead().getSha(), mergedSHA, input.getHead().getLabel(), input.getBase().getLabel(), input.getHtmlUrl().toString(), user.getName(), user.getEmail(), input.getBody(), input.getTitle());
          } catch (IOException e) {
             throw new RuntimeException(e);
