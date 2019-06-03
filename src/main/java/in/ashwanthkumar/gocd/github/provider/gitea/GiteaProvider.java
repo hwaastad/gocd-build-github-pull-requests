@@ -11,7 +11,6 @@ import in.ashwanthkumar.gocd.github.settings.scm.ScmPluginConfigurationView;
 import in.ashwanthkumar.utils.func.Function;
 import org.apache.commons.lang.StringUtils;
 import org.kohsuke.github.GHPullRequest;
-import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GHUser;
 import org.kohsuke.github.GitHub;
 
@@ -26,7 +25,7 @@ public class GiteaProvider extends GitHubProvider {
 
    @Override
    public GoPluginIdentifier getPluginId() {
-      return new GoPluginIdentifier("github.pr", Arrays.asList("1.0"));
+      return new GoPluginIdentifier("gitea.pr", Arrays.asList("1.0"));
    }
 
    @Override
@@ -77,7 +76,6 @@ public class GiteaProvider extends GitHubProvider {
    private GitHub loginWith(GitConfig gitConfig) throws IOException {
       if (hasCredentials(gitConfig) && isGithub(gitConfig.getUrl()))
          return GitHub.connectUsingPassword(gitConfig.getUsername(), gitConfig.getPassword());
-         //  return GitHub.connectToEnterprise("http://gitea.gitea.10.210.212.105.xip.io/api/v1/", gitConfig.getUsername(), gitConfig.getPassword());
       else if (hasCredentials(gitConfig) && !isGithub(gitConfig.getUrl())) {
          LOG.info("Connecting to: " + filterApiUrl(gitConfig.getUrl()));
          return GitHub.connectToEnterprise(filterApiUrl(gitConfig.getUrl()), gitConfig.getUsername(), gitConfig.getPassword());
